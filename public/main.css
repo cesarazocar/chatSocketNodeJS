@@ -1,0 +1,52 @@
+body{
+    font-family: 'Nunito', sans-serif;
+}
+
+#chat-container{                                /* editar id chat-container */
+    max-width: 600px;                           /* ancho maximo del chat*/
+    margin: 30px auto;                          /* margen de 30px hacia arriba y automatico a los lados para que se centre automaticamente*/
+    border: 1px solid #ddd;                   /* */
+    box-shadow:1px 3px 5px rgba(0,0,0,.5);    /* rgba color de transparencia */  
+}
+
+#chat-window{
+    padding: 14px 0;                            /* padding 14 px arriba y abajo y 0 a los lados */
+    margin: 0 20px;                             /* margin 0 arriba y abajo y 20 a los lados */        
+    border-bottom: 1px solid #e9e9e9;        /* */
+    color: #555;                                /* color de fuente*/
+
+}
+
+#actions p{
+    padding: 14px 0;
+    margin: 0 20px;
+    border-bottom: 1px solid #e9e9e9;
+    color: #555;
+}
+
+#output p {                 /* editando todas las etiquetas p dentro de output */
+    color: #aaa; 
+    padding: 14px 0;
+    margin: 0 20px;
+
+}
+input{
+    padding: 10px 20px;
+    box-sizing: border-box;
+    border:0;
+    background: #eee;
+    display:block;              /* para que esten separados uno arriba del otro*/
+    width:100%;
+}
+
+button{
+    background:#575ed8;
+    color: #fff;
+    font-size: 18px;
+    border: 0;
+    padding: 12px 0;
+    width: 100%;
+    border-radius: 0 0 2px 2px;
+
+
+}
