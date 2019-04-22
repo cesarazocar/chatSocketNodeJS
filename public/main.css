@@ -39,7 +39,7 @@ input{
     width:100%;
 }
 
-button{
+button{ /*editar todos los botones*/
     background:#575ed8;
     color: #fff;
     font-size: 18px;

@@ -15,24 +15,59 @@ const server = app.listen(app.get('port'),()=>{
     console.log('server on port', app.get('port'));
     });
 
+
+    
+
+    
+
 const SocketIo = require('socket.io');
 const io = SocketIo(server);
 
 //websockets
 io.on('connection',(socket)=>{ //socket es la variable que recibe desde chat.js
-    console.log('new connection id:',socket.id);
+    
+    server.getConnections(function(error, count) {
+        console.log('server conections: '+count);    
+        });
+
+    console.log('new connection id:', socket.id);
+
+    socket.on('chat:newuser',(userdata)=>{
+        console.log('username connected:'+userdata.username);
+        socket.broadcast.emit('chat:newuser',{
+            uniqueId: socket.id,
+            username: userdata.username
+        
+        });
+    });
+
+
+  
+
+    
+    /*socket.emit('chat:typing', {
+        uniqueId:socket.id
+    });*/
     
     //escuchar evento del socket al cual estoy conectado
     socket.on('chat:message',(data)=>{ //recibe data (on es escuchar)
 
         //enviar a todos los usuarios incluyendo al que lo envió
-        io.sockets.emit('chat:message',data);              //a todos los sockets que estan conectados vamos a emitirle un evento
-
-        
+        io.sockets.emit('chat:message',data);              //a todos los sockets que estan conectados vamos a emitirle un evento mensaje
+        console.log(data.username+" says: "+data.message)
+       
     });
     
     socket.on('chat:typing',(userdata)=>{
         socket.broadcast.emit('chat:typing',userdata); //broadcast para enviar a todos los usuarios excepto al que lo envio
+        
+
+    });
+
+    socket.on('chat:closing',(userdata)=>{
+        socket.broadcast.emit('chat:closing',userdata); //broadcast para enviar a todos los usuarios excepto al que lo envio
+        console.log('user '+userdata.username+' left the room');
+
     });
 
 });
