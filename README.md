@@ -12,3 +12,9 @@ Compatible Esp8266 client <a href="https://github.com/cesarazocar/Socket.ioChatE
 </a>
 
 
+Compatible Android app client <a href="https://github.com/cesarazocar/chatSocketIo">here</a>
+
+<a href="https://github.com/cesarazocar/chatSocketIo">
+  <img src="https://github.com/cesarazocar/chatSocketIo/blob/master/socketio%20android.png" width="350" title="Android app client" alt="Android app client">
+</a>
+
