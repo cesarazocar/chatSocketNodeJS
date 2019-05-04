@@ -1,7 +1,6 @@
 # chatSocketNodeJS
 Chat en NodeJS con Socket.io
-
-Socket.io client preview:
+<a href="https://github.com/cesarazocar/chatSocketNodeJS/tree/master/public">Socket.io client</a> preview:
 
 <img src="https://github.com/cesarazocar/chatSocketNodeJS/blob/master/socketio%20preview.png" width="350" title="Socketio client example" alt="Socket.io client example">
 
