@@ -1,7 +1,5 @@
 //io('http://midominio.com')
 const socket = io();
-
-
 let message = document.getElementById('message');
 let username = document.getElementById('username');
 //let uniqueId = socket.id;
@@ -10,153 +8,114 @@ let output = document.getElementById('output');
 let actions = document.getElementById('actions');
 let typing = false;
 
+function button() {
 
+    if (btn.textContent == 'Enviar') {
 
+        if (message.value.length > 0) {
+            socket.emit('chat:message', {
+                message: message.value,
+                username: username.value
+            });
+            message.placeholder = "Message";
+            message.value = ''; //cuando ya se envió borra lo que tenia escrito en la casilla mensaje
+        } else {
+            message.placeholder = "Type something first";
+            //actions.innerHTML = `<p>type something</p>`;
+        }
+    }
+    if (btn.textContent == 'Ingresar') {
+        if (username.value.length > 0) {
+            username.disabled = true;
+            message.style.display = 'block';
+            btn.textContent = 'Enviar';
 
-//message.style.display = "none";
-//message.style.display = "block";
+            socket.emit('chat:newuser', {
+                username: username.value
+            });
+            username.placeholder = "Username";
 
-
-function button(){
-    if(btn.textContent=='Enviar'){
-        socket.emit('chat:message',{
-            message:message.value,
-            username:username.value      
-        });  
-        message.value = ''; //cuando ya se envió borra lo que tenia escrito en la casilla mensaje
-    } 
-    if(btn.textContent=='Ingresar'){
-        username.disabled=true;
-        message.style.display = 'block';
-        btn.textContent='Enviar';
-
-        socket.emit('chat:newuser', {
-            username:username.value
-        });
-
-    }    
+        } else {
+            username.placeholder = 'Enter your username first';
+        }
+    }
 }
 
-btn.addEventListener('click',function(){
-
+btn.addEventListener('click', function () {
     button();
-   
 });
 
-
-
-message.addEventListener('keyup',function(e){
-
+message.addEventListener('keyup', function (e) {
 
     var key = e.which || e.keyCode;
-
     if (key == 8 || key == 46) {//tecla backspace || delete
         //console.log("backspace || delete up");    
-        if(message.value.length == 0){
-            typing=false;
+        if (message.value.length == 0) {
+            typing = false;
             typingevent();
         }
-        
-      }
-
-
+    }
 });
 
+message.addEventListener('keypress', function (e) {
 
-
-message.addEventListener('keypress',function(e){
-
-    
-        typing=true;
-        
-    
-
+    typing = true;
     var key = e.which || e.keyCode;
     if (key === 13) {//tecla enter 
         button();//enviar
-      }
-   
+    }
+    typingevent();
 
-      typingevent();
-
-    
-
-    
 });
 
-function typingevent(){
-    socket.emit('chat:typing', {       
-
-        username:username.value,
-        typing:typing
+function typingevent() {
+    socket.emit('chat:typing', {
+        username: username.value,
+        typing: typing
     });
 }
 
-
-function closingevent(){
-    socket.emit('chat:closing', {       
-
-        username:username.value
+function closingevent() {
+    socket.emit('chat:closing', {
+        username: username.value
     });
 }
 
-
-
-
-
-
-socket.on('chat:newuser',function(data){
+socket.on('chat:newuser', function (data) {
     //let uniqueId = socket.id;
     //console.log(data.uniqueId);
     console.log(data.username);
-
-
     output.innerHTML += `<p style="color:#575ed8;">
     <strong>${data.username}</strong>: is now connected </p>`;
-
-
 });
 
-
-
-socket.on('chat:message',function(data){// aunque tengan el mismo nombre con el que emite arriba son distintos porque uno (emit) emite y el otro (on) escucha
-    
+socket.on('chat:message', function (data) {// aunque tengan el mismo nombre con el que emite arriba son distintos porque uno (emit) emite y el otro (on) escucha
     actions.innerHTML = '';
     console.log(data);
     output.innerHTML += `<p>
     <strong>${data.username}</strong>: ${data.message}
     </p>`;
 
-}) ;
-
-socket.on('chat:typing',function(data){
-    //en el json chat:typing enviamos el nombre del usuario que esta escribiendo (username) o que dejo de escribir
-    
-    //console.log(data.username+" esta escribiendo");
-    
-    if(data.typing){
-        actions.innerHTML = `<p><em>${data.username} is typing a message</em></p>`;
-    }else{
-        actions.innerHTML= "";
-    }
-    
 });
 
-socket.on('chat:closing',function(data){
+socket.on('chat:typing', function (data) {
     //en el json chat:typing enviamos el nombre del usuario que esta escribiendo (username) o que dejo de escribir
-    
     //console.log(data.username+" esta escribiendo");
-    
-    
-        actions.innerHTML = `<p><em>${data.username} has left the room</em></p>`;
-    
-    
+    if (data.typing) {
+        actions.innerHTML = `<p><em>${data.username} is typing a message</em></p>`;
+    } else {
+        actions.innerHTML = "";
+    }
+});
+
+socket.on('chat:closing', function (data) {
+    //en el json chat:typing enviamos el nombre del usuario que esta escribiendo (username) o que dejo de escribir
+    //console.log(data.username+" esta escribiendo");
+    actions.innerHTML = `<p><em>${data.username} has left the room</em></p>`;
 });
 
 window.onbeforeunload = closingCode;
 
-function closingCode(){
-   
+function closingCode() {
     closingevent();
-   return null;
 }

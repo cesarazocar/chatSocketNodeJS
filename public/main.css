@@ -3,6 +3,7 @@ body{
 }
 
 #chat-container{                                /* editar id chat-container */
+    /*max-height:600px;*/
     max-width: 600px;                           /* ancho maximo del chat*/
     margin: 30px auto;                          /* margen de 30px hacia arriba y automatico a los lados para que se centre automaticamente*/
     border: 1px solid #ddd;                   /* */
@@ -10,6 +11,9 @@ body{
 }
 
 #chat-window{
+    
+    
+
     padding: 14px 0;                            /* padding 14 px arriba y abajo y 0 a los lados */
     margin: 0 20px;                             /* margin 0 arriba y abajo y 20 a los lados */        
     border-bottom: 1px solid #e9e9e9;        /* */
@@ -17,14 +21,22 @@ body{
 
 }
 
+
 #actions p{
+
+    
+
     padding: 14px 0;
     margin: 0 20px;
     border-bottom: 1px solid #e9e9e9;
     color: #555;
 }
 
+
 #output p {                 /* editando todas las etiquetas p dentro de output */
+    
+    max-height: 300px;    
+
     color: #aaa; 
     padding: 14px 0;
     margin: 0 20px;

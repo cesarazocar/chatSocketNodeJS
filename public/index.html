@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,19 +9,16 @@
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
     <link rel="stylesheet" href="main.css">
 </head>
+
 <body>
-    
+
     <div id="chat-container">
         <div id="chat-window">
-            <div id="output">
-                
-            </div>
+            <div id="output"></div>
             <div id="actions"></div>
-
         </div>
-        <input type="text" id="username" placeholder="Username">
-        
 
+        <input type="text" id="username" placeholder="Username">
         <input type="text" id="message" placeholder="Message" style="display: none">
         <button id="send">Ingresar</button>
     </div>
@@ -28,4 +26,5 @@
     <script src="/socket.io/socket.io.js" charset="utf-8"></script>
     <script src="chat.js" charset="utf-8"></script>
 </body>
+
 </html>
