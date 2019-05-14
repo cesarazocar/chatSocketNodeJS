@@ -17,6 +17,9 @@ function button() {
                 message: message.value,
                 username: username.value
             });
+            typing = false;
+            typingevent();
+
             message.placeholder = "Message";
             message.value = ''; //cuando ya se envió borra lo que tenia escrito en la casilla mensaje
         } else {
