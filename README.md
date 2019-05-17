@@ -17,3 +17,9 @@ Compatible Android app client <a href="https://github.com/cesarazocar/chatSocket
   <img src="https://github.com/cesarazocar/chatSocketIo/blob/master/socketio%20android.png" width="350" title="Android app client" alt="Android app client">
 </a>
 
+Compatible Flutter app client <a href="https://github.com/cesarazocar/flutterchatsocketio">here</a>
+
+<a href="https://github.com/cesarazocar/flutterchatsocketio">
+  <img src="https://github.com/cesarazocar/flutterchatsocketio/blob/master/chat.png" width="350" title="Flutter app client" alt="Flutter app client">
+</a>
+
