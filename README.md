@@ -23,12 +23,7 @@ Compatible Flutter app client <a href="https://github.com/cesarazocar/fluttercha
   <img src="https://github.com/cesarazocar/flutterchatsocketio/blob/master/chat.png" width="350" title="Flutter app client" alt="Flutter app client">
 </a>
 
-Support events (defined on index.js):
-
-`'chat:newuser'` : emits the 'username' & 'uniqueId', both of them to every client, except the new client
-`'chat:message'` : emits the 'username' & 'message', both of them to every client
-`'chat:typing'` : emits the 'username' & 'typing', both of them to every client, except the new client
-`'chat:closing'` : emits the 'username' to every client, except the new client
+**Support events (defined on index.js):**
 
 | Event            | Emits         |
 | -------------    |:-------------:| 
