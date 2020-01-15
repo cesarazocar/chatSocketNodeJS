@@ -28,6 +28,6 @@ Compatible Flutter app client <a href="https://github.com/cesarazocar/fluttercha
 | Event            | Emits         |
 | -------------    |:-------------:| 
 |`'chat:newuser'`  | the `'username'` & `'uniqueId'`, both of them to every client, except the new client |
-| `'chat:typing'`  | the `'username'` & `'typing'`, both of them to every client, except the new client|
+| `'chat:typing'`  | the `'username'` & `'typing'`, both of them to every client, except the origin client|
 | `'chat:message'` | the `'username'` & `'message'`, both of them to every client|
-| `'chat:closing'` | the `'username'` to every client, except the new client|
+| `'chat:closing'` | the `'username'` to every client, except the origin client|
